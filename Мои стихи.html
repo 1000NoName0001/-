@@ -1,0 +1,1160 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТУМАН | Слово Солдата</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ОБЩИЕ СТИЛИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #c0c0c0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(to bottom, rgba(10,10,10,0.98), rgba(10,10,10,0.96)),
+                url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=20');
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        a {
+            color: #8b4513;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: #d2691e;
+            text-shadow: 0 0 10px rgba(210, 105, 30, 0.5);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #8b4513;
+            text-align: center;
+            position: relative;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: #8b4513;
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: #8b4513;
+            padding: 10px 30px;
+            border: 1px solid #8b4513;
+            border-radius: 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 10px;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: #8b4513;
+            color: #000;
+            box-shadow: 0 0 15px rgba(139, 69, 19, 0.4);
+        }
+
+        /* ШАПКА */
+        header {
+            height: 100vh;
+            background: 
+                linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.95)),
+                url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=30') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8b4513;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .header-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #8b4513;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            letter-spacing: 5px;
+            font-weight: 300;
+        }
+
+        .header-content .subtitle {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .header-content .quote {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 40px;
+            border-left: 2px solid #8b4513;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        /* РАЗДЕЛ "ОБО МНЕ" */
+        .about-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .service-badges {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #8b4513;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .badge:hover {
+            background: rgba(139, 69, 19, 0.1);
+            transform: translateX(5px);
+        }
+
+        .badge h3 {
+            color: #8b4513;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .badge p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        /* РАЗДЕЛ "СТИХИ" */
+        .poem-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            color: #666;
+            border: 1px solid #333;
+            padding: 8px 20px;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #8b4513;
+            color: #000;
+            border-color: #8b4513;
+        }
+
+        .poems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .poem-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #222;
+            padding: 25px;
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .poem-card:hover {
+            border-color: #8b4513;
+            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .poem-card h3 {
+            color: #8b4513;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            line-height: 1.4;
+            min-height: 60px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .poem-card .excerpt {
+            color: #999;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            flex-grow: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 8;
+            -webkit-box-orient: vertical;
+        }
+
+        .poem-card .date {
+            color: #555;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            border-top: 1px solid #222;
+            padding-top: 10px;
+        }
+
+        .poem-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(139, 69, 19, 0.1);
+            color: #8b4513;
+            padding: 4px 12px;
+            border-radius: 0;
+            font-size: 0.75rem;
+            border: 1px solid rgba(139, 69, 19, 0.3);
+        }
+
+        .view-full {
+            display: inline-block;
+            color: #8b4513;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+        }
+
+        .view-full:hover {
+            border-bottom: 1px solid #8b4513;
+        }
+
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ ПОЛНОГО ТЕКСТА */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #111;
+            border: 1px solid #333;
+            padding: 40px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #8b4513;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .modal-poem-title {
+            color: #8b4513;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .modal-poem-text {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            white-space: pre-line;
+            margin-bottom: 30px;
+        }
+
+        /* РАЗДЕЛ "АРХИВ" */
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .archive-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #222;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .archive-item:hover {
+            border-color: #8b4513;
+            transform: scale(1.02);
+        }
+
+        .archive-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* РАЗДЕЛ "ПАМЯТЬ" */
+        .memory-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .memory-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .memory-item:hover {
+            border-color: #8b4513;
+            transform: translateY(-5px);
+        }
+
+        .brother-name {
+            color: #8b4513;
+            font-size: 1.2rem;
+            margin: 15px 0 5px;
+        }
+
+        .brother-call {
+            color: #888;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* РАЗДЕЛ "КОНТАКТЫ" */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-link {
+            text-align: center;
+            padding: 20px;
+            min-width: 150px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: #8b4513;
+            background: rgba(139, 69, 19, 0.1);
+        }
+
+        .contact-link i {
+            font-size: 2rem;
+            color: #8b4513;
+            margin-bottom: 15px;
+        }
+
+        /* ПОДВАЛ */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .poems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ШАПКА -->
+    <header>
+        <nav>
+            <div class="container nav-container">
+                <div class="logo">ТУМАН</div>
+                <ul class="nav-links">
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#poems">Стихи</a></li>
+                    <li><a href="#memory">Память</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="header-content">
+            <h1>ТУМАН</h1>
+            <div class="subtitle">Солдат. Поэт. Свидетель.<br>Пишу правду, которая режет глаза.</div>
+            <div class="quote">
+                "Я солдат своей страны. Я заключенный своей страны.<br>
+                Кто я? Предатель мира ли, герой войны?"
+            </div>
+        </div>
+    </header>
+
+    <!-- ОБО МНЕ -->
+    <section id="about">
+        <div class="container">
+            <h2>Обо мне</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Я — обычный человек, который прошёл через ад и обратно. Тюрьма, война, предательство, любовь — всё это стало моими чернилами. Я пишу не для славы, а чтобы остаться в здравом уме. Чтобы те, кто погибли, не стали просто цифрой в отчёте.</p>
+                    <p>Мои стихи — это не литература. Это крик души, окопная правда, донесение из самого пекла. Здесь нет пафоса и лжи. Только то, что видели мои глаза и чувствовало моё сердце.</p>
+                    <p>Этот сайт — мой личный фронт. Место, где я буду публиковать новые стихи, мысли, память о братьях.</p>
+                </div>
+                <div class="service-badges">
+                    <div class="badge">
+                        <h3>15 ОМБСр "ШТОРМ"</h3>
+                        <p>«Чёрные Гусары». 2022-2023. Штурмовые подразделения. Самые тяжёлые бои, самые верные братья.</p>
+                    </div>
+                    <div class="badge">
+                        <h3>433-й гвардейский полк</h3>
+                        <p>«Молот». «Бойцы». Гвардейская честь, гвардейская ответственность. От ДНР до Запорожья.</p>
+                    </div>
+                    <div class="badge">
+                        <h3>Путь воина</h3>
+                        <p>От тюрьмы до передовой. От ненависти до любви. От разрушения к созиданию словом.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТИХИ -->
+    <section id="poems">
+        <div class="container">
+            <h2>Мои стихи</h2>
+            <div class="poem-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="war">Война</button>
+                <button class="filter-btn" data-filter="love">Любовь</button>
+                <button class="filter-btn" data-filter="memory">Память</button>
+                <button class="filter-btn" data-filter="thoughts">Размышления</button>
+                <button class="filter-btn" data-filter="new">Новые</button>
+            </div>
+            
+            <div class="poems-grid">
+                <!-- СТИХ 1 -->
+                <div class="poem-card" data-tags="war memory">
+                    <h3>В память о Брате "Макар"</h3>
+                    <div class="excerpt">
+                        Он человек с душой, 
+                        И был Мужчиной с большой буквы.
+                        В отваге, в чести не было упрека,
+                        Макар, братуха что ж так вышло,
+                        Печаль и горе...
+                        Но знай что карма их настигла,
+                        Тех бесов кто послал на смерть.
+                        Длань Божья наказала.
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#война</span>
+                        <span class="tag">#память</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="1">Читать полностью →</a>
+                    <div class="date">2023</div>
+                </div>
+
+                <!-- СТИХ 2 -->
+                <div class="poem-card" data-tags="love">
+                    <h3>Ленуська моя</h3>
+                    <div class="excerpt">
+                        Ленуська моя сладкая моя королева, 
+                        моя вкусная, моя ты ева, я твой адам
+                        да часто несу хуйню, иногда бываю в хлам
+                        но ты моя богиня, да я баран.
+                        с тобой нежно, с тобой как под пледом
+                        душевно тепло...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#любовь</span>
+                        <span class="tag">#Лена</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="2">Читать полностью →</a>
+                    <div class="date">2024</div>
+                </div>
+
+                <!-- СТИХ 3 -->
+                <div class="poem-card" data-tags="war thoughts">
+                    <h3>Разрыв шаблонов</h3>
+                    <div class="excerpt">
+                        разрыв шаблонов , разрыв сознанья,
+                        и это только часть моего наказания
+                        не принимаю творящийся в мире бред
+                        устал от не вкусной лапши на обед
+                        что усердно нам подают 
+                        пичкают на убой , вся правда тут
+                        в ящике телеэкрана...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#война</span>
+                        <span class="tag">#размышления</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="3">Читать полностью →</a>
+                    <div class="date">2024</div>
+                </div>
+
+                <!-- СТИХ 4 -->
+                <div class="poem-card" data-tags="war memory">
+                    <h3>Алым вином</h3>
+                    <div class="excerpt">
+                        Алым вином мы поим жадную богиню,
+                        Мы на закланье, для нас выкопаны могилы.
+                        Кто то в верху перст направил вперед,
+                        Встали мы дружно страх не ебет.
+                        Пули свистят, разрывы снарядов гранат,
+                        Наша пятнашка идет вперед...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#война</span>
+                        <span class="tag">#память</span>
+                        <span class="tag">#15омбср</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="4">Читать полностью →</a>
+                    <div class="date">2023</div>
+                </div>
+
+                <!-- СТИХ 5 -->
+                <div class="poem-card" data-tags="war">
+                    <h3>Солдатик возвращается домой</h3>
+                    <div class="excerpt">
+                        Солдатик возвращается домой 
+                        И вроде все на месте, но он другой.
+                        В глазах что были так живы, светлы
+                        Нет места яркой жизни...
+                        Они мертвы , они пусты 
+                        Зачем пошел он воевать?
+                        Ответа нет...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#война</span>
+                        <span class="tag">#возвращение</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="5">Читать полностью →</a>
+                    <div class="date">2023</div>
+                </div>
+
+                <!-- СТИХ 6 -->
+                <div class="poem-card" data-tags="love">
+                    <h3>Знай моя звезда</h3>
+                    <div class="excerpt">
+                        Знай моя звезда, что на моем небе ты светишь одна...
+                        Иду к тебе не смотря ни на что,
+                        Знаю, что ты судьба моя,
+                        И не пугает меня впереди ни что.
+                        Да я собственник, и ты только моя...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#любовь</span>
+                        <span class="tag">#Лена</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="6">Читать полностью →</a>
+                    <div class="date">2024</div>
+                </div>
+
+                <!-- СТИХ 7 -->
+                <div class="poem-card" data-tags="thoughts">
+                    <h3>Вселенная тебя благодарю</h3>
+                    <div class="excerpt">
+                        вселенная тебя благодарю за всё,
+                        все эти испытания ценю 
+                        я прохожу и набираюсь сил 
+                        и не сломить , не надломить 
+                        хотя порой без сил.
+                        благодаря тебе я стал мудрее,
+                        еще я стал добрей...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#размышления</span>
+                        <span class="tag">#философия</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="7">Читать полностью →</a>
+                    <div class="date">2024</div>
+                </div>
+
+                <!-- СТИХ 8 -->
+                <div class="poem-card" data-tags="war memory">
+                    <h3>Кровавыми слезами</h3>
+                    <div class="excerpt">
+                        Кровавыми слезами мы кормим матушку 
+                        Сыру-землю,
+                        И кто-то пишет пальцем на стене,
+                        Я тебя люблю...
+                        На издыхании последнем он.
+                        Его захватывает тяжёлый 
+                        Сладкий сон...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#война</span>
+                        <span class="tag">#память</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="8">Читать полностью →</a>
+                    <div class="date">2023</div>
+                </div>
+
+                <!-- СТИХ 9 -->
+                <div class="poem-card" data-tags="thoughts war">
+                    <h3>Вот я все о стране о мире</h3>
+                    <div class="excerpt">
+                        вот я все о стране о мире в целом,
+                        и не слов о себе, о себе любимом.
+                        а что писать я счастлив, я живой,
+                        живу с любимой, как и мечтал
+                        гуляю с ней под луной.
+                        в целом все прекрасно,
+                        жизнь бьет ключем...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#размышления</span>
+                        <span class="tag">#личное</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="9">Читать полностью →</a>
+                    <div class="date">2024</div>
+                </div>
+
+                <!-- СТИХ 10 -->
+                <div class="poem-card" data-tags="war new">
+                    <h3>Вот какая история</h3>
+                    <div class="excerpt">
+                        вот какая история сегодня приключилась со мной ,
+                        кто меня не знает , я тот еще псих 
+                        а не положительный герой
+                        решили с любимой сходить в магазин,
+                        наш пес побежал с нами ,
+                        не хотел оставаться один...
+                    </div>
+                    <div class="poem-tags">
+                        <span class="tag">#война</span>
+                        <span class="tag">#новое</span>
+                        <span class="tag">#быль</span>
+                    </div>
+                    <a href="#" class="view-full" data-poem="10">Читать полностью →</a>
+                    <div class="date">2024</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПАМЯТЬ -->
+    <section id="memory">
+        <div class="container">
+            <h2>Память о Братьях</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #888;">Они ушли в бессмертие. Мы обязаны помнить.</p>
+            
+            <div class="memory-wall">
+                <div class="memory-item">
+                    <div class="brother-name">МАКАР</div>
+                    <div class="brother-call">Позывной "Макар"</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Честь. Отвага. Верность.</p>
+                </div>
+                <div class="memory-item">
+                    <div class="brother-name">ТУПАК</div>
+                    <div class="brother-call">Позывной "Тупак"</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Чёрные Гусары помнят</p>
+                </div>
+                <div class="memory-item">
+                    <div class="brother-name">СЕРЁГА</div>
+                    <div class="brother-call">Позывной "Наглый"</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Вечная память солдату</p>
+                </div>
+                <div class="memory-item">
+                    <div class="brother-name">ВСЕМ</div>
+                    <div class="brother-call">Кто не вернулся</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Сотни имён в сердце</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contacts">
+        <div class="container">
+            <h2>Контакты</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #888;">Для связи, предложений, поддержки</p>
+            
+            <div class="contact-links">
+                <div class="contact-link">
+                    <i class="fab fa-telegram"></i>
+                    <div>Telegram</div>
+                    <div style="color: #8b4513; font-size: 0.9rem; margin-top: 5px;">@тут_ваш_ник</div>
+                </div>
+                <div class="contact-link">
+                    <i class="fab fa-vk"></i>
+                    <div>ВКонтакте</div>
+                    <div style="color: #8b4513; font-size: 0.9rem; margin-top: 5px;">vk.com/тут_ссылка</div>
+                </div>
+                <div class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <div>Почта</div>
+                    <div style="color: #8b4513; font-size: 0.9rem; margin-top: 5px;">ваша@почта.ру</div>
+                </div>
+                <div class="contact-link">
+                    <i class="fab fa-youtube"></i>
+                    <div>YouTube</div>
+                    <div style="color: #8b4513; font-size: 0.9rem; margin-top: 5px;">Канал</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="btn" onclick="alert('Форма обратной связи будет добавлена позже')">Написать мне</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <div class="container">
+            <p>© 2024 ТУМАН. Все стихи, мысли, память — мои. При копировании материалов ссылка обязательна.</p>
+            <p style="margin-top: 15px; color: #555; font-size: 0.8rem;">Сайт создан как личное пространство солдата-поэта</p>
+        </div>
+    </footer>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПОЛНОГО ТЕКСТА СТИХОВ -->
+    <div id="poemModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3 class="modal-poem-title" id="modalTitle"></h3>
+            <div class="modal-poem-text" id="modalText"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript для фильтрации и модального окна -->
+    <script>
+        // ФИЛЬТРАЦИЯ СТИХОВ
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const poemCards = document.querySelectorAll('.poem-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Убираем активный класс у всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс нажатой кнопке
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    poemCards.forEach(card => {
+                        if (filterValue === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const tags = card.getAttribute('data-tags');
+                            if (tags.includes(filterValue)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // МОДАЛЬНОЕ ОКНО ДЛЯ ПОЛНОГО ТЕКСТА
+            const viewFullLinks = document.querySelectorAll('.view-full');
+            const modal = document.getElementById('poemModal');
+            const closeModal = document.querySelector('.close-modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalText = document.getElementById('modalText');
+            
+            // Полные тексты стихов
+            const fullPoems = {
+                1: `В память о близком друге и боевом товарище с Позывным "Макар".
+
+Он человек с душой, 
+И был Мужчиной с большой буквы.
+В отваге, в чести не было упрека,
+Макар, братуха что ж так вышло,
+Печаль и горе...
+Но знай что карма их настигла,
+Тех бесов кто послал на смерть.
+Длань Божья наказала.
+
+И знай, что помним на века,
+Тебя, твои глаза, улыбку.
+Твоя жена-сестрою стала нам.
+И будет под защитой...
+
+Спи спокойно, Брат.
+Мы встретимся.
+Там, где нет войны.`,
+
+                2: `Ленуська моя сладкая моя королева, 
+моя вкусная, моя ты ева , я твой адам
+да часто несу хуйню , иногда бываю в хлам
+но ты моя богиня , да я баран.
+с тобой нежно , с тобой как под пледом
+
+душевно тепло , 
+а твои глаза , два озера 
+в них купаться по кайфу , и так глубоко,
+вобщем моя ты конфетка , с тобой
+мне по доброму легко.
+с тобой душа поет , улыбается.
+мне очень с тобой жить нравится`,
+
+                3: `разрыв шаблонов , разрыв сознанья,
+и это только часть моего наказания
+не принимаю творящийся в мире бред
+устал от не вкусной лапши на обед
+что усердно нам подают 
+пичкают на убой , вся правда тут
+в ящике телеэкрана, в руках смартфона,
+что купила тебя мама ...
+слушай и впитывай что тебе говрят ,
+Sehr gut Kinder тебе говрят.
+вот посмотри как все хорошо 
+зарплаты растут , для тебя все легко
+только ты разум свой отключи 
+тише ,тише бунтарь не кричи.
+послушай как соловей-соловьев
+сказки поет , за это орден дадим 
+пусть еще больше бред несет
+все это наш народ любит ,
+а проблемы он вытерпит все он снесет
+вот люди я от этой страшной сказки 
+честно устал , ну его на хуй 
+жму на стоп-кран , дальше на этом 
+шарике вы без меня , мне не туда.`,
+
+                4: `Алым вином мы поим жадную богиню,
+Мы на закланье, для нас выкопаны могилы.
+Кто то в верху перст направил вперед,
+Встали мы дружно страх не ебет.
+Пули свистят, разрывы снарядов гранат,
+Наша пятнашка идет вперед,
+Идет прямо в ад.
+Нет мы не киборги, мы русские парни,
+Просто в перед это задание.
+Нацики в ужасе, знают Чёрных Гусар,
+Мы для них самый лютый кошмар.
+Но соответственно плата большая,
+Алым вином поим богиню
+Жадность ее беспредельна, я знаю...`,
+
+                5: `Солдатик возвращается домой 
+И вроде все на месте, но он другой.
+В глазах что были так живы, светлы
+Нет места яркой жизни...
+Они мертвы , они пусты 
+Зачем пошел он воевать?
+Ответа нет...
+Как жить и как ему вернуть глаза, 
+Чем пустоту заполнить.
+Вопрос ... И только тишина`,
+
+                6: `Знай моя звезда, что на моем небе ты светишь одна...
+Иду к тебе не смотря ни на что,
+Знаю, что ты судьба моя,
+И не пугает меня впереди ни что.
+Да я собственник, и ты только моя,
+Ни с кем не смогу делить тебя,
+Моя, моя, моя...
+Так же и я с головой весь твой.
+И за помни мне иногда больно,
+Я живой.
+Слово даю буду носить на руках,
+Ты будешь под защитой , не знать что такое страх.
+Окружу тебя любовью и заботой,
+Что бы ты летала в облаках 
+Даже когда за работой...
+Ну все хватит писать , просто знай 
+Очень сильно люблю тебя...`,
+
+                7: `вселенная тебя благодарю за всё,
+все эти испытания ценю 
+я прохожу и набираюсь сил 
+и не сломить , не надломить 
+хотя порой без сил.
+благодаря тебе я стал мудрее,
+еще я стал добрей,
+я научился принимать удар,
+с улыбкой на губах,
+но не подумай так что мне не 
+ведом страх,
+на против я его чувствую его
+с полна ,
+но с ним я друг и крепко за руку
+держа иду с ним хоть куда.
+и люди все кто что то как то мне
+испортил жизнь, все вам простил
+все зло и все добро ...
+лишь вымысел людей , дуальность
+и для меня знать это радость.
+еще раз мир благодарю,
+теперь живу я , а не существую,
+и этот мир люблю`,
+
+                8: `Кровавыми слезами мы кормим матушку 
+Сыру-землю,
+И кто-то пишет пальцем на стене,
+Я тебя люблю...
+На издыхании последнем он.
+Его захватывает тяжёлый 
+Сладкий сон.
+И сколько вот таких ребят,
+Идут в перед. За правду...
+За Россию.
+А кто-то греет руки,
+Ему насилие в сласть.
+А смерть дает барышь,
+Что ж сделать такова война.
+Кому-то гибель,
+А кому казна.`,
+
+                9: `вот я все о стране о мире в целом,
+и не слов о себе, о себе любимом.
+а что писать я счастлив, я живой,
+живу с любимой, как и мечтал
+гуляю с ней под луной.
+в целом все прекрасно,
+жизнь бьет ключем,
+есть мелкие проблемы но они не очем.
+я счастлив с любимой Еленкой`,
+
+                10: `вот какая история сегодня приключилась со мной ,
+кто меня не знает , я тот еще псих 
+а не положительный герой
+решили с любимой сходить в магазин,
+наш пес побежал с нами ,
+не хотел оставаться один ,
+да он немец но пёсель он добрый
+бегать любит "козел" не годный
+идем с Ленкой бредем не спеша
+это чудо носится рядом не сбегает пока
+тут выплывает типчик убогий,
+чья это собка , я тут такой весь модный
+отвечаю ему , это мой пес
+кого хера без поводка ? 
+его мне вопрос, 
+эй паренек ты что так грубо говоришь 
+ведь по виду ты терпила , серая мышь
+в разговоре я руку поднял почесать лицо
+он стал дергаться испугалось его лицо
+сжалось яйцо
+достал телефон мол съемку виду ,
+заявление в метовку на тебя напишу.
+ответ мой таков иди ты мол лесом
+не понимаешь дурак , могу сделать 
+балбесом...
+в руки я взял себя терпилу не трогал
+хоть мой чайник сильно кипел , 
+горжусь собой что так я сумел.
+тут через час вызываем такси ,
+через 5 минут говорит Наталья приедет
+уже она в пути,
+выходим ,авто у наших ворот 
+а зарулем пидарас вот такой поворот
+мол я Натах пернатый птах
+домчу на всех порах,
+да что такое ? почему именно со мной
+не перевариваю геев всей душой...
+себя в руки молчу , он чет трындит,
+я представляю как его калачу...
+но эти мысли опять отогнал 
+вылез с машины и дальше с любимкой
+погнал , 
+поворот на улицу куда нам было надо 
+и вот новый сюжет бредовый,
+тетка пред нами средь бела дня 
+села поссать 
+вот мразь что делать собралась
+ссыт ни кого не стыдясь
+простите за мат друзья ,
+там я держался молчал да да да
+а если честно я рад что этот урок 
+я выполнил в коротенький срок.`
+            };
+            
+            // Открытие модального окна
+            viewFullLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const poemId = link.getAttribute('data-poem');
+                    const poemCard = link.closest('.poem-card');
+                    const poemTitle = poemCard.querySelector('h3').textContent;
+                    
+                    modalTitle.textContent = poemTitle;
+                    modalText.textContent = fullPoems[poemId] || 'Текст стиха пока не загружен...';
+                    
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Закрытие модального окна
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Закрытие по клику вне окна
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Плавная прокрутка к якорям
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
